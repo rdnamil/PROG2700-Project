@@ -24,12 +24,14 @@
 		.card { padding: 0; }
     </style>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <!--FancyBox imports-->
+    <!--import fancybox-->
 	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css" />
 
+	<!--import axios-->
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript">
 
 		// highlight current page on navbar and show/hide pages
@@ -40,6 +42,59 @@
 		}
 
 		$(document).ready(function() {
+			// populate home/products page
+			async function popProducts(url) {
+				const response = await axios.get(url);
+
+				console.log(response);
+
+				response.data.forEach((p, i) => {
+					$('#products').append(`
+<!--product card-->
+<div class="col-md-4 px-1"><div class="card h-100">
+	<div class="product-img">
+		<img src="./images/${p.image_main}" alt="Main image" class="card-img-top">
+		<div class="price">$${p.price}</div>
+	</div>
+	<div class="card-body d-flex flex-column">
+		<h5 class="card-title">${p.title}</h5>
+		<p class="card-text">${p.description}</p>
+		<button class="btn btn-primary w-100 mt-auto" data-bs-toggle="modal" data-bs-target="#modal-${i}">View</button>
+	</div>
+</div></div>
+
+<!--product modal-->
+<div class="modal fade" id="modal-${i}">
+	<div class="modal-dialog"><div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title">${p.title}</h5>
+			<button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+		</div>
+		<div class="modal-body">
+			<p>${p.description}</p>
+			<img class="w-100 mb-3" src="./images/${p.image_large} alt="Large image"></img>
+			<div class="row mb-3 g-3">
+				<a class="col-md-3" href="./images/${p.image_gallery_1}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_1}" alt="Gallery image 1"></img></a>
+				<a class="col-md-3" href="./images/${p.image_gallery_2}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_2}" alt="Gallery image 2"></img></a>
+				<a class="col-md-3" href="./images/${p.image_gallery_3}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_3}" alt="Gallery image 3"></img></a>
+				<a class="col-md-3" href="./images/${p.image_gallery_4}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_4}" alt="Gallery image 4"></img></a>
+				<a class="col-md-3" href="./images/${p.image_gallery_5}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_5}" alt="Gallery image 5"></img></a>
+				<a class="col-md-3" href="./images/${p.image_gallery_6}" data-fancybox="gallery"><img class="w-100" src="./images/${p.image_gallery_6}" alt="Gallery image 6"></img></a>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn btn-success w-100" type="button">Add to cart</button>
+			<button class="btn btn-secondary w-100" type="button" data-bs-dismiss="modal">Close</button>
+		</div>
+	</div></div>
+</div>
+					`);
+				});
+			}
+
+			// call populate products func
+			popProducts('https://codethesolution.com/nscc/project2700-andre.php');
+
 			// fancybox
 			Fancybox.bind("[data-fancybox]");
 		});
@@ -90,49 +145,7 @@
 
     <main class="container">
 
-    <div class="page home active">
-		<div class="products row">
-			<div class="card col-md-4">
-
-				<!--product card-->
-				<div class="product-img">
-					<img src="./images/om1nm.jpg" alt="" class="card-img-top">
-					<div class="price">$263.63</div>
-				</div>
-				<div class="card-body">
-					<h5 class="card-title">Olympus OM-1N</h5>
-					<p class="card-text">Leightweight 35mm SLR with built-in light-meter and sharp Zuiko lense platform.</p>
-					<button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-1">View</button>
-				</div>
-
-				<!--product modal-->
-				<div class="modal fade" id="modal-1">
-					<div class="modal-dialog"><div class="modal-content">
-						<div class="modal-header">
-							<h5 class="modal-title">Olympus OM-1N</h5>
-							<button class="btn-close" type="button" data-bs-dismiss="modal"></button>
-						</div>
-						<div class="modal-body">
-							<p>Leightweight 35mm SLR with built-in light-meter and sharp Zuiko lense platform.</p>
-							<img class="w-100 mb-3" src="./images/om1nm.jpg" alt="">
-							<div class="row mb-3 g-2">
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button class="btn btn-success w-100" type="button">Add to cart</button>
-							<button class="btn btn-secondary w-100" type="button" data-bs-dismiss="modal">Close</button>
-						</div>
-					</div></div>
-				</div>
-			</div>
-		</div>
-    </div>
+    <div class="page home active"><div class="row g-2" id="products"></div></div>
     <div class="page products">Products</div>
     <div class="page about">About</div>
     <div class="page contact">Contact</div>

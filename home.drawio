@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.1 Chrome/142.0.7444.265 Electron/39.8.0 Safari/537.36" version="29.6.1">
   <diagram name="Page-1" id="GGpQMw81GYZNcypiO0MT">
-    <mxGraphModel dx="1617" dy="1282" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1142" dy="1218" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -28,19 +28,19 @@
         <mxCell id="EsVMXAoNmFH1veRHpezF-8" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
           <mxGeometry height="110" width="720" x="-20" y="280" as="geometry" />
         </mxCell>
-        <mxCell id="EsVMXAoNmFH1veRHpezF-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="img_1" vertex="1">
+        <mxCell id="EsVMXAoNmFH1veRHpezF-9" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" value="img_1" vertex="1">
           <mxGeometry height="90" width="140" x="-10" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="EsVMXAoNmFH1veRHpezF-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="img_2" vertex="1">
+        <mxCell id="EsVMXAoNmFH1veRHpezF-10" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" value="img_2" vertex="1">
           <mxGeometry height="90" width="140" x="140" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="EsVMXAoNmFH1veRHpezF-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="img_3" vertex="1">
+        <mxCell id="EsVMXAoNmFH1veRHpezF-11" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" value="img_3" vertex="1">
           <mxGeometry height="90" width="140" x="290" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="EsVMXAoNmFH1veRHpezF-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="img_4" vertex="1">
+        <mxCell id="EsVMXAoNmFH1veRHpezF-12" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" value="img_4" vertex="1">
           <mxGeometry height="90" width="140" x="440" y="290" as="geometry" />
         </mxCell>
-        <mxCell id="EsVMXAoNmFH1veRHpezF-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="img_5" vertex="1">
+        <mxCell id="EsVMXAoNmFH1veRHpezF-13" parent="1" style="rounded=0;whiteSpace=wrap;html=1;sketch=1;curveFitting=1;jiggle=2;" value="img_5" vertex="1">
           <mxGeometry height="90" width="110" x="590" y="290" as="geometry" />
         </mxCell>
         <mxCell id="EsVMXAoNmFH1veRHpezF-15" parent="1" style="triangle;whiteSpace=wrap;html=1;" value="" vertex="1">

@@ -12,7 +12,16 @@
     <style>
 		.logo { width: 40px; height: 40px; }
 		.page { display: none; }
-		.active { display: block; }
+		.page.active { display: block; }
+		.product-img { position: relative; text-align: center; }
+		.price {
+			position: absolute; bottom: 10px; right: 0px;
+			padding: 2px 4px 2px 4px;
+			border-radius: 4px 0 0 4px;
+			color: white;
+			background-color: green;
+		}
+		.card { padding: 0; }
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -71,7 +80,21 @@
 
     <main class="container">
 
-    <div class="page home active">Home</div>
+    <div class="page home active">
+		<div class="products row">
+			<div class="card col-md-4">
+				<div class="product-img">
+					<img src="./images/om1nm.jpg" alt="" class="card-img-top">
+					<div class="price">$263.63</div>
+				</div>
+				<div class="card-body">
+					<h5 class="card-title">Olympus OM-1N</h5>
+					<p class="card-text">Leightweight 35mm SLR with built-in light-meter and sharp Zuiko lense platform.</p>
+					<button class="btn btn-primary w-100">View</button>
+				</div>
+			</div>
+		</div>
+    </div>
     <div class="page products">Products</div>
     <div class="page about">About</div>
     <div class="page contact">Contact</div>

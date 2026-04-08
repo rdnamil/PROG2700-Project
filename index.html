@@ -173,29 +173,40 @@
 			// check fields
 			let errors = 3;
 
+			function toggleError(elem, isError = true) {
+				if (isError) {
+					$(elem).addClass('error');
+					$(elem).siblings('small').removeClass('d-none');
+					$('#send').addClass('disabled');
+					if ($('.page.contact .alert').length === 0) $('.page.contact').prepend(`
+<div class="alert alert-danger" role="alert"><div>Please review the form for errors</div></div>
+						`);
+
+				} else {
+					$(elem).removeClass('error');
+					$(elem).siblings('small').addClass('d-none');
+					if (errors === 0) {
+						$('#send').removeClass('disabled');
+						$('.alert-danger').remove();
+					}
+				}
+			}
+
 			$('input, textarea').on({
 				input: function() {
 					const l = $(this).val().length;
 
 					if (l === 1) {
 						errors = Math.max(0, errors -1);
-						$(this).removeClass('error');
-						$(this).siblings('small').addClass('d-none');
-						if ($(this).val().length === 1)
-						if (errors === 0) $('#send').removeClass('disabled');
+						toggleError(this, false);
+
 					} else if (l === 0) {
 						errors = Math.min(3, errors +1);
-						$(this).addClass('error');
-						$(this).siblings('small').removeClass('d-none');
-						$('#send').addClass('disabled');
+						toggleError(this);
 					}
 				},
 				blur: function() {
-					if ($(this).val().length === 0) {
-						$(this).addClass('error');
-						$(this).siblings('small').removeClass('d-none');
-						$('#send').addClass('disabled');
-					}
+					if ($(this).val().length === 0) toggleError(this);
 				}
 			});
 		});
@@ -243,6 +254,7 @@
 
     <main class="container">
 
+		<!--home page-->
 		<div class="page home active">
 			<!--slider-->
 			<div class="jcarousel-wrapper">
@@ -263,8 +275,13 @@
 			</div><br>
 
 			<!--products-->
-			<div class="row g-2" id="products"></div></div><br>
+			<div class="row g-2" id="products"></div>
+		</div>
+
+		<!--about page-->
 		<div class="page about">About</div>
+
+		<!--contact page-->
 		<div class="page contact">
 			<h5>Contact us</h5>
 			<form action="">

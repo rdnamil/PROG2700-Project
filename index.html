@@ -21,6 +21,14 @@
 			color: white;
 			background-color: green;
 		}
+		form { padding: 4px; }
+		small {
+			font-size: 0.8rem !important;
+			color: red !important;
+		}
+		.error {
+			border-color: red !important;
+		}
 
 		/*bootstrap*/
 		.card { padding: 0; }
@@ -161,6 +169,23 @@
 					if (!scrolled) $('.jcarousel').jcarousel('scroll', 0);
 				});
 			});
+
+			// check fields
+			let errors = 3;
+
+			$('input, textarea').on("input", function() {
+				if ($(this).val().length > 0) {
+					errors = Math.max(0, errors -1);
+					$(this).removeClass('error');
+					$(this).siblings('small').addClass('d-none');
+					if (errors === 0) $('#send').removeClass('disabled');
+				} else {
+					errors = Math.min(3, errors +1);
+					$(this).addClass('error');
+					$(this).siblings('small').removeClass('d-none');
+					$('#send').addClass('disabled');
+				}
+			});
 		});
 
     </script>
@@ -207,6 +232,7 @@
     <main class="container">
 
 		<div class="page home active">
+			<!--slider-->
 			<div class="jcarousel-wrapper">
 				<div class="jcarousel w-100"><div>
 					<img src="./images/image1.jpg" alt="Slider image 1" />
@@ -223,9 +249,29 @@
 				<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
 				<a href="#" class="jcarousel-control-next">&rsaquo;</a>
 			</div><br>
+
+			<!--products-->
 			<div class="row g-2" id="products"></div></div><br>
 		<div class="page about">About</div>
-		<div class="page contact">Contact</div>
+		<div class="page contact">
+			<h5>Contact us</h5>
+			<form action="">
+				<!--email-->
+				<div class="form-group mt-1">
+					<label for="email">Email address</label><small class="form-text d-none"> <sup>*</sup>Email address is required</small>
+					<input type="text" class="form-control" id="email" placeholder="jdoe@mail.com">
+				</div>
+				<div class="form-group mt-1">
+					<label for="subject">Subject line</label><small class="form-text d-none"> <sup>*</sup>Subject line is required</small>
+					<input type="text" class="form-control" id="subject" placeholder="RE:Hello/Goodbye">
+				</div>
+				<div class="form-group mt-1">
+					<label for="message">Message</label><small class="form-text d-none"> <sup>*</sup>Message is required</small>
+					<textarea class="form-control" id="message" rows="6" placeholder="Enter some text here."></textarea>
+				</div>
+				<button class="btn btn-primary w-100 mt-3 disabled" type="submit" id="send">Send</button>
+			</form>
+		</div>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

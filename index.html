@@ -25,6 +25,11 @@
     </style>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!--FancyBox imports-->
+	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css" />
+
     <script type="text/javascript">
 
 		// highlight current page on navbar and show/hide pages
@@ -33,6 +38,11 @@
 			$('.page').removeClass('active');
 			$(`.${id}`).addClass('active');
 		}
+
+		$(document).ready(function() {
+			// fancybox
+			Fancybox.bind("[data-fancybox]");
+		});
 
     </script>
 </head>
@@ -83,6 +93,8 @@
     <div class="page home active">
 		<div class="products row">
 			<div class="card col-md-4">
+
+				<!--product card-->
 				<div class="product-img">
 					<img src="./images/om1nm.jpg" alt="" class="card-img-top">
 					<div class="price">$263.63</div>
@@ -90,7 +102,33 @@
 				<div class="card-body">
 					<h5 class="card-title">Olympus OM-1N</h5>
 					<p class="card-text">Leightweight 35mm SLR with built-in light-meter and sharp Zuiko lense platform.</p>
-					<button class="btn btn-primary w-100">View</button>
+					<button class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#modal-1">View</button>
+				</div>
+
+				<!--product modal-->
+				<div class="modal fade" id="modal-1">
+					<div class="modal-dialog"><div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title">Olympus OM-1N</h5>
+							<button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+						</div>
+						<div class="modal-body">
+							<p>Leightweight 35mm SLR with built-in light-meter and sharp Zuiko lense platform.</p>
+							<img class="w-100 mb-3" src="./images/om1nm.jpg" alt="">
+							<div class="row mb-3 g-2">
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+								<a class="col-md-3" href="./images/om1nm.jpg" data-fancybox="gallery" data-caption="Caption #1"><img  class="w-100" src="./images/om1nm.jpg" alt="Gallery image 1" /></a>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button class="btn btn-success w-100" type="button">Add to cart</button>
+							<button class="btn btn-secondary w-100" type="button" data-bs-dismiss="modal">Close</button>
+						</div>
+					</div></div>
 				</div>
 			</div>
 		</div>

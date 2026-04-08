@@ -21,7 +21,46 @@
 			color: white;
 			background-color: green;
 		}
+
+		/*bootstrap*/
 		.card { padding: 0; }
+
+		/*jcarousel*/
+		.jcarousel {
+			position: relative;
+			overflow: hidden;
+			width: 200px;
+			height: 200px
+		}
+		.jcarousel div {
+			width: 10000em;
+			position: relative;
+		}
+		.jcarousel div img {
+			height: 200px;
+		}
+		.jcarousel-wrapper { position: relative; }
+		.jcarousel-control-prev,
+		.jcarousel-control-next {
+			position: absolute;
+			top: 85px;
+			width: 30px;
+			height: 30px;
+			text-align: center;
+			background: #4E443C;
+			color: #fff;
+			text-decoration: none;
+			text-shadow: 0 0 1px #000;
+			font: 24px/27px Arial, sans-serif;
+			-webkit-border-radius: 30px;
+			-moz-border-radius: 30px;
+					border-radius: 30px;
+			-webkit-box-shadow: 0 0 2px #999;
+			-moz-box-shadow: 0 0 2px #999;
+					box-shadow: 0 0 2px #999;
+		}
+		.jcarousel-control-prev { left: -15px; }
+		.jcarousel-control-next { right: -15px; }
     </style>
 
     <!--import fancybox-->
@@ -31,7 +70,11 @@
 	<!--import axios-->
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
+	<!--import jcarousel-->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    	<script type="text/javascript" src="./jquery.jcarousel.js"></script>
+
     <script type="text/javascript">
 
 		// highlight current page on navbar and show/hide pages
@@ -97,6 +140,27 @@
 
 			// fancybox
 			Fancybox.bind("[data-fancybox]");
+
+			// jCarousel
+			$('.jcarousel').jcarousel();
+			// auto-scroll
+			const autoScroll = setInterval(function() {
+				$('.jcarousel').jcarousel('scroll', '+=1', true, function(scrolled) {
+					if (!scrolled) $('.jcarousel').jcarousel('scroll', 0);
+				});
+			}, 5000);
+			// prev control
+			$('.jcarousel-control-prev').click(function() {
+				$('.jcarousel').jcarousel('scroll', '-=1', true, function(scrolled) {
+					if (!scrolled) $('.jcarousel').jcarousel('scroll', $('.jcarousel').jcarousel('last'));
+				});
+			});
+			// next control
+			$('.jcarousel-control-next').click(function() {
+				$('.jcarousel').jcarousel('scroll', '+=1', true, function(scrolled) {
+					if (!scrolled) $('.jcarousel').jcarousel('scroll', 0);
+				});
+			});
 		});
 
     </script>
@@ -109,7 +173,7 @@
 
             <!-- Top Left Link -->
             <a class="navbar-brand" href="#" onClick="javascript:activateLink('Home');return false;">
-				<img class="logo" src="./images/logo.webp" alt="aperture logo">
+				<img class="logo" src="./images/logo.webp" alt="aperture logo"> Andre's Camera Shop
             </a>
 
             <!-- do not delete or modify the next 3 lines (button)-->
@@ -124,10 +188,10 @@
                         <a class="nav-link home active" href="#" onClick="javascript:activateLink('home');return false;">Home</a>
                     </li>
                     <li class="nav-item about">
-                        <a class="nav-link" href="#" onClick="javascript:activateLink('about');return false;">About</a>
+                        <a class="nav-link about" href="#" onClick="javascript:activateLink('about');return false;">About</a>
                     </li>
                     <li class="nav-item contact">
-                        <a class="nav-link" href="#" onClick="javascript:activateLink('contact');return false;">Contact</a>
+                        <a class="nav-link contact" href="#" onClick="javascript:activateLink('contact');return false;">Contact</a>
                     </li>
                     <!-- END NAV LINKS -->
 
@@ -142,9 +206,20 @@
 
     <main class="container">
 
-    <div class="page home active"><div class="row g-2" id="products"></div></div>
-    <div class="page about">About</div>
-    <div class="page contact">Contact</div>
+		<div class="page home active">
+			<div class="jcarousel-wrapper">
+				<div class="jcarousel w-100"><div>
+					<img src="./images/image1.jpg" alt="jCarousel image 1" />
+					<img src="./images/image2.jpg" alt="jCarousel image 2" />
+					<img src="./images/image3.jpg" alt="jCarousel image 3" />
+					<img src="./images/image4.jpg" alt="jCarousel image 4" />
+				</div></div>
+				<a href="#" class="jcarousel-control-prev">&lsaquo;</a>
+				<a href="#" class="jcarousel-control-next">&rsaquo;</a>
+			</div><br>
+			<div class="row g-2" id="products"></div></div><br>
+		<div class="page about">About</div>
+		<div class="page contact">Contact</div>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

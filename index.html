@@ -52,6 +52,11 @@
                     <li class="nav-item contact">
                         <a class="nav-link contact" href="#" onClick="javascript:activateLink('contact');return false;">Contact</a>
                     </li>
+                    <li class="nav-item cart">
+                        <a class="nav-link cart" href="#" onClick="javascript:activateLink('cart');return false;">
+                            🛒 Cart <span class="cart-badge" id="cart-count">0</span>
+                        </a>
+                    </li>
                     <!-- END NAV LINKS -->
 
                 </ul>
@@ -119,9 +124,26 @@
 			</form>
 		</div>
 
-		<br>
+		<!--cart page-->
+		<div class="page cart">
+			<div class="cart-header">
+				<h1>Your Cart</h1>
+			</div>
+			<div id="cart-empty" class="cart-empty">
+				<span class="cart-empty-icon">🛒</span>
+				<p>Your cart is empty.</p>
+				<button class="btn btn-primary" onclick="activateLink('home')">Browse Products</button>
+			</div>
+			<div id="cart-items" class="cart-items"></div>
+			<div id="cart-footer" class="cart-footer d-none">
+				<div class="cart-total">
+					Total: <span id="cart-total">$0.00</span>
+				</div>
+				<button class="btn btn-success btn-lg w-100 mt-3">Checkout</button>
+			</div>
+		</div>
 
-    </main>
+		<br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

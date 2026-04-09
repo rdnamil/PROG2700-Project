@@ -1,6 +1,40 @@
 // keep track of form errors
 let errors = 3;
 
+// cart array
+let cart = [];
+
+// render cart page
+function renderCart() {
+	$('#cart-items').empty();
+
+	if (cart.length === 0) {
+		$('#cart-empty').show();
+		$('#cart-footer').addClass('d-none');
+		return;
+	}
+
+	$('#cart-empty').hide();
+	$('#cart-footer').removeClass('d-none');
+
+	cart.forEach((item) => {
+		$('#cart-items').append(`
+			<div class="cart-item">
+				<img src="./images/${item.image_main}" alt="${item.title}" class="cart-item-img">
+				<div class="cart-item-details">
+					<h5 class="cart-item-title">${item.title}</h5>
+					<p class="cart-item-desc">${item.description}</p>
+				</div>
+				<div class="cart-item-price">$${item.price}</div>
+			</div>
+		`);
+	});
+
+	const total = cart.reduce((sum, item) => sum + parseFloat(item.price), 0);
+	$('#cart-total').text('$' + total.toFixed(2));
+	$('#cart-count').text(cart.length);
+}
+
 // send contact us form
 async function sendMessage() {
 
@@ -41,6 +75,7 @@ function activateLink(id) {
 	$('.nav-link').removeClass('active');
 	$('.page').removeClass('active');
 	$(`.${id}`).addClass('active');
+	if (id === 'cart') renderCart();
 }
 
 $(document).ready(function() {
@@ -50,7 +85,9 @@ $(document).ready(function() {
 
 		console.log(response);
 
-		response.data.forEach((p, i) => {
+		const products = response.data;
+
+		products.forEach((p, i) => {
 			$('#products').append(`
 			<!--product card-->
 			<div class="col-md-4 px-1"><div class="card h-100">
@@ -85,7 +122,7 @@ $(document).ready(function() {
 			</div>
 			</div>
 			<div class="modal-footer">
-			<button class="btn btn-success w-100" type="button">Add to cart</button>
+			<button class="btn btn-success w-100 add-to-cart-btn" type="button" data-index="${i}" data-bs-dismiss="modal">Add to Cart 🛒</button>
 			<button class="btn btn-secondary w-100" type="button" data-bs-dismiss="modal">Close</button>
 			</div>
 			</div></div>
@@ -94,6 +131,17 @@ $(document).ready(function() {
 
 			// fancyboxes
 			Fancybox.bind(`[data-fancybox="gallery-${i}"]`);
+		});
+
+		// add to cart click handler (event delegation)
+		$(document).on('click', '.add-to-cart-btn', function() {
+			const idx = $(this).data('index');
+			cart.push(products[idx]);
+			$('#cart-count').text(cart.length);
+
+			// flash badge
+			$('#cart-count').addClass('cart-badge-pop');
+			setTimeout(() => $('#cart-count').removeClass('cart-badge-pop'), 400);
 		});
 	}
 

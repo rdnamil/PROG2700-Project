@@ -85,6 +85,43 @@
 
     <script type="text/javascript">
 
+		// keep track of form errors
+		let errors = 3;
+
+		// send contact us form
+		async function sendMessage() {
+
+			const formData = new FormData();
+			formData.set('email', $('#email').val());
+			formData.set('subject', $('#subject').val());
+			formData.set('message', $('#message').val());
+
+			const response = await axios({
+				method: 'post',
+				url: './send.php',
+				data: formData
+			}).catch(error => {
+
+			}).finally(() => {
+
+			});
+
+			console.log(response);
+
+			// reset form
+			errors = 3;
+			$('input, textarea').val('');
+			$('#send').addClass('disabled');
+
+			// alert form was sent successfully
+			$('.page.contact').prepend(`
+<div class="alert alert-success" role="alert"><div>Sent!</div></div>
+			`);
+			setTimeout(function(){
+				$('.alert-success').remove();
+			}, 3000);
+		}
+
 		// highlight current page on navbar and show/hide pages
 		function activateLink(id) {
 			$('.nav-link').removeClass('active');
@@ -171,8 +208,6 @@
 			});
 
 			// check fields
-			let errors = 3;
-
 			function toggleError(elem, isError = true) {
 				if (isError) {
 					$(elem).addClass('error');
@@ -220,7 +255,7 @@
         <div class="container-fluid">
 
             <!-- Top Left Link -->
-            <a class="navbar-brand" href="#" onClick="javascript:activateLink('Home');return false;">
+            <a class="navbar-brand" href="#" onClick="javascript:activateLink('home');return false;">
 				<img class="logo" src="./images/logo.webp" alt="aperture logo"> Andre's Camera Shop
             </a>
 
@@ -284,23 +319,25 @@
 		<!--contact page-->
 		<div class="page contact">
 			<h5>Contact us</h5>
-			<form action="">
+			<form method="post" action="javascript:sendMessage();">
 				<!--email-->
 				<div class="form-group mt-1">
-					<label for="email">Email address</label><small class="form-text d-none"> <sup>*</sup>Email address is required</small>
+					<label for="email">Email address</label><small class="form-text d-none"> <sup>*required</sup></small>
 					<input type="text" class="form-control" id="email" placeholder="jdoe@mail.com">
 				</div>
 				<div class="form-group mt-1">
-					<label for="subject">Subject line</label><small class="form-text d-none"> <sup>*</sup>Subject line is required</small>
+					<label for="subject">Subject line</label><small class="form-text d-none"> <sup>*required</sup></small>
 					<input type="text" class="form-control" id="subject" placeholder="RE:Hello/Goodbye">
 				</div>
 				<div class="form-group mt-1">
-					<label for="message">Message</label><small class="form-text d-none"> <sup>*</sup>Message is required</small>
+					<label for="message">Message</label><small class="form-text d-none"> <sup>*required</sup></small>
 					<textarea class="form-control" id="message" rows="6" placeholder="Enter some text here."></textarea>
 				</div>
 				<button class="btn btn-primary w-100 mt-3 disabled" type="submit" id="send">Send</button>
 			</form>
 		</div>
+
+		<br>
 
     </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>

@@ -11,6 +11,7 @@
 	color: white;
 	background-color: green;
 }
+.about img { width: 100px; float: left; margin: 10px; }
 form { padding: 4px; }
 small {
 	font-size: 0.8rem !important;

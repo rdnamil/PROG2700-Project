@@ -1,1 +1,61 @@
 @charset "UTF-8";
+
+.logo { width: 40px; height: 40px; }
+.page { display: none; }
+.page.active { display: block; }
+.product-img { position: relative; text-align: center; }
+.price {
+	position: absolute; bottom: 10px; right: 0px;
+	padding: 2px 4px 2px 4px;
+	border-radius: 4px 0 0 4px;
+	color: white;
+	background-color: green;
+}
+form { padding: 4px; }
+small {
+	font-size: 0.8rem !important;
+	color: red !important;
+}
+.error {
+	border-color: red !important;
+}
+
+/*bootstrap*/
+.card { padding: 0; }
+
+/*jcarousel*/
+.jcarousel {
+	position: relative;
+	overflow: hidden;
+	width: 200px;
+	height: 200px
+}
+.jcarousel div {
+	width: 10000em;
+	position: relative;
+}
+.jcarousel div img {
+	height: 200px;
+}
+.jcarousel-wrapper { position: relative; }
+.jcarousel-control-prev,
+.jcarousel-control-next {
+	position: absolute;
+	top: 85px;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	background: #4E443C;
+	color: #fff;
+	text-decoration: none;
+	text-shadow: 0 0 1px #000;
+	font: 24px/27px Arial, sans-serif;
+	-webkit-border-radius: 30px;
+	-moz-border-radius: 30px;
+	border-radius: 30px;
+	-webkit-box-shadow: 0 0 2px #999;
+	-moz-box-shadow: 0 0 2px #999;
+	box-shadow: 0 0 2px #999;
+}
+.jcarousel-control-prev { left: -15px; }
+.jcarousel-control-next { right: -15px; }
